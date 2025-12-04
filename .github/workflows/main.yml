@@ -33,4 +33,4 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         push: true
-        tags: Sahil Kamate/flask-user-app:latest
+        tags: sahilkamate/flask-user-app:latest
