@@ -1,0 +1,36 @@
+name: Flask CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        echo "No automated tests yet"
+
+    - name: Build Docker image
+      run: docker build -t flask-user-app .
+
+    - name: Push Docker image to Docker Hub (optional)
+      uses: docker/build-push-action@v4
+      with:
+        push: true
+        tags: <dockerhub_username>/flask-user-app:latest
